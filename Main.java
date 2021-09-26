@@ -1,137 +1,121 @@
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-
-enum qualified {
-    READY,
-    WAIT
-}
-
+import java.util.List;
+import java.util.ArrayList;
+import java.util.concurrent.*;
   
 class Main{  
     public static void main(String args[]){  
-        BusStop busStop = new BusStop(0);
-        Bus bus = new Bus();
-        Rider rider1 = new Rider(0);
-        Rider rider2 = new Rider(0);
-        Rider rider3 = new Rider(0);
-        Rider rider4 = new Rider(0);
+        List<Rider> busQueue = new ArrayList<Rider>();
+        Semaphore spaces = new Semaphore(3);
+        Semaphore turnstile = new Semaphore(1);
+        Semaphore mutex = new Semaphore(1);
+        Bus bus = new Bus(busQueue, spaces, turnstile, mutex);
+        Rider rider = new Rider(busQueue, spaces, turnstile, mutex);
 
-        busStop.riderArrives(rider1);
-        busStop.riderArrives(rider2);
-        busStop.riderArrives(rider3);
+        Thread threadBus1 = new Thread(bus);
+        Thread threadBus2 = new Thread(bus);
+        Thread threadBus3 = new Thread(bus);
+        Thread thread1 = new Thread(rider);
+        Thread thread2 = new Thread(rider);
+        Thread thread3 = new Thread(rider);
+        Thread thread4 = new Thread(rider);
+        Thread thread5 = new Thread(rider);
 
-        busStop.busArrives(bus);
+        threadBus1.start();
 
-        busStop.riderArrives(rider4);
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+        thread5.start();
 
+        threadBus2.start();
+        threadBus3.start();
     }  
+
 }  
 
-class BusStop{
-    private Queue<Rider> queue;
-    private int state;
-
-    public BusStop(int state){
-        this.state = state;
-        queue = new LinkedList<>();
-    }
-
-    public int getState(){
-        return this.state;
-    }
-
-    private void setState(int state){
-        this.state = state;
-    }
-
-    public void riderArrives(Rider rider){
-        if (this.state==1){
-            rider.waitForNextBus();
-        }
-        queue.add(rider);
-        System.out.println("Rider is in the queue...");
-    }
-
-    public void busArrives(Bus bus){
-        System.out.println("Bus has arrived...");
-        this.setState(1);
-
-        boolean isEmpty = this.queue.isEmpty();
-        if (!isEmpty){
-            this.boardRiders();
-        }
-        bus.depart();
-        this.setState(0);
-        this.getReadyRiders();
-    }
-
-    private void getReadyRiders(){
-        Iterator<Rider> iterator = queue.iterator();
-
-        while (iterator.hasNext()) {
-            Rider nextRider = iterator.next();
-
-            if (nextRider.getStatus() == 0)
-                continue;
-
-            nextRider.getReadyForNextBus();
-        }
-    }
-
-    private void boardRiders(){
-        Iterator<Rider> iterator = queue.iterator();
-        Integer count = 0;
-
-        while (iterator.hasNext() && count<50 && iterator.next().getStatus()!=1) {
-            iterator.remove();
-            count++;
-        }
-    }
-}
-
 class Bus extends Thread{
-    public Bus(){
-        run();
+    private List<Rider> busQueue;
+    private Semaphore spaces;
+    private Semaphore turnstile;
+    private Semaphore mutex;
+
+    public Bus(List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
+        super();
+        this.busQueue = busQueue;
+        this.spaces = spaces;
+        this.turnstile = turnstile;
+        this.mutex = mutex;
     }
 
     public void run() {
         System.out.println("Thread Bus started");
+        
+        try{
+            this.turnstile.acquire();
+            // CRITICAL SECTION
+            this.mutex.acquire();
+
+            Iterator<Rider> iterator = busQueue.iterator();
+            int count=0;
+            while (iterator.hasNext()) {
+                Rider nextRider = iterator.next();
+                iterator.remove();
+                nextRider.boardBus(this);
+                this.spaces.release();
+                count++;
+            }
+            this.depart(count);
+            this.mutex.release();
+            // CRITICAL SECTION END 
+            
+            this.turnstile.release();
+        } catch(InterruptedException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void depart(){
-        System.out.println("Bus is departing...");
+    public void depart(int count){
+        System.out.println("Bus is departing with " + count + " riders");
     }
 }
 
 class Rider extends Thread{
-    private int status;
+    private List<Rider> busQueue;
+    private Semaphore spaces;
+    private Semaphore turnstile;
+    private Semaphore mutex;
 
-    public Rider(int status){
+    public Rider(List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
         super();
-        this.status = status;
-        run();
+        this.busQueue = busQueue;
+        this.spaces = spaces;
+        this.turnstile = turnstile;
+        this.mutex = mutex;
     }
 
     public void run() {
         System.out.println("Thread Rider started");
-    }
+        try{
+            turnstile.acquire();
+            turnstile.release();
+    
+            spaces.acquire();
 
-    public int getStatus(){
-        return this.status;
+            // CRITICAL SECTION
+            mutex.acquire();
+            busQueue.add(this);
+            mutex.release(); 
+            // CRITICAL SECTION END   
+
+            System.out.println("Thread Added to the List");     
+        } catch(InterruptedException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void boardBus(Bus bus){
         System.out.println("Rider boarded...");
-    }
-
-    public void waitForNextBus(){
-        this.status = 1;
-        System.out.println("Wait for the next Bus...");
-    }
-
-    public void getReadyForNextBus(){
-        this.status = 0;
-        System.out.println("Ready for the next Bus...");
     }
 }
