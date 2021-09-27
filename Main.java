@@ -8,18 +8,19 @@ import java.util.Random;
 class Main{  
     public static void main(String args[]){  
         List<Rider> busQueue = new ArrayList<Rider>();
-        Semaphore spaces = new Semaphore(3);
+        Semaphore spaces = new Semaphore(50);
         Semaphore turnstile = new Semaphore(1);
         Semaphore mutex = new Semaphore(1);
-
-        Bus bus = new Bus(busQueue, spaces, turnstile, mutex);
-        Rider rider = new Rider(busQueue, spaces, turnstile, mutex);
 
         float meanBusArrivalTime = 20 * 60f * 1000 ;
         float meanRiderArrivalTime = 30f * 1000;
 
-        EntityProducer busProducer = new EntityProducer(bus, meanBusArrivalTime, busQueue, spaces, turnstile, mutex);
-        EntityProducer riderProducesr = new EntityProducer(rider, meanRiderArrivalTime, busQueue, spaces, turnstile, mutex);
+        // test
+        // float meanBusArrivalTime = 3f * 1000 ;
+        // float meanRiderArrivalTime = 1f * 1000;
+
+        EntityProducer busProducer = new EntityProducer("bus", meanBusArrivalTime, busQueue, spaces, turnstile, mutex);
+        EntityProducer riderProducesr = new EntityProducer("rider", meanRiderArrivalTime, busQueue, spaces, turnstile, mutex);
         
         Thread busThread = new Thread(busProducer);
         Thread riderThread = new Thread(riderProducesr);
@@ -31,20 +32,20 @@ class Main{
 }  
 
 class EntityProducer extends Thread{
-    private BusStopEntity entity;
+    private Runnable entity;
+    private String entityType;
     private float meanArrivalTime;
+    private Random randomGenerator;
     private List<Rider> busQueue;
     private Semaphore spaces;
     private Semaphore turnstile;
     private Semaphore mutex;
-    
 
-    private Random randomGenerator;
 
-    public EntityProducer(BusStopEntity entity, float meanArrivalTime, List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
+    public EntityProducer(String entityType, float meanArrivalTime, List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
         super();
         
-        this.entity = entity;
+        this.entityType = entityType;
         this.meanArrivalTime = meanArrivalTime;
         this.busQueue = busQueue;
         this.spaces = spaces;
@@ -55,11 +56,20 @@ class EntityProducer extends Thread{
     }
 
     @Override
-    public void run() {
-        System.out.println("");
+    public void run() {        
+        int count=0;
         while (true){
             try{
-                Thread rider = new Thread(this.entity);
+                count++;
+                if (entityType=="bus"){
+                    entity = new Bus(count, busQueue, spaces, turnstile, mutex);
+                } else{
+                    entity = new Rider(count, busQueue, spaces, turnstile, mutex);
+                }
+                Thread rider = new Thread(entity);
+                
+                System.out.println("Produced "+ entity.getClass().getName() + " " + count);
+
                 rider.start();
                 Thread.sleep(nextEntityIn());
             } catch (InterruptedException e){
@@ -74,17 +84,16 @@ class EntityProducer extends Thread{
 
 }
 
-interface BusStopEntity extends Runnable{
-}
-
-class Bus implements BusStopEntity{
+class Bus implements Runnable{
+    private int id;
     private List<Rider> busQueue;
     private Semaphore spaces;
     private Semaphore turnstile;
     private Semaphore mutex;
 
-    public Bus(List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
+    public Bus(int id, List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
         super();
+        this.id = id;
         this.busQueue = busQueue;
         this.spaces = spaces;
         this.turnstile = turnstile;
@@ -92,7 +101,7 @@ class Bus implements BusStopEntity{
     }
 
     public void run() {
-        System.out.println("Thread Bus started");
+        System.out.println("Bus " + this.id +" arrived...");
         
         try{
             this.turnstile.acquire();
@@ -119,18 +128,20 @@ class Bus implements BusStopEntity{
     }
 
     public void depart(int count){
-        System.out.println("Bus is departing with " + count + " riders");
+        System.out.println("Bus " + this.id + " is departing with " + count + " riders");
     }
 }
 
-class Rider implements BusStopEntity{
+class Rider implements Runnable{
+    private int id;
     private List<Rider> busQueue;
     private Semaphore spaces;
     private Semaphore turnstile;
     private Semaphore mutex;
 
-    public Rider(List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
+    public Rider(int id, List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
         super();
+        this.id = id;
         this.busQueue = busQueue;
         this.spaces = spaces;
         this.turnstile = turnstile;
@@ -138,7 +149,7 @@ class Rider implements BusStopEntity{
     }
     
     public void run() {
-        System.out.println("Thread Rider started");
+        System.out.println("Rider "+ this.id +" arrived");
         try{
             turnstile.acquire();
             turnstile.release();
@@ -151,13 +162,13 @@ class Rider implements BusStopEntity{
             mutex.release(); 
             // CRITICAL SECTION END   
 
-            System.out.println("Thread Added to the List");     
+            System.out.println("Rider " + this.id + " is in the busStop");     
         } catch(InterruptedException e){
             System.out.println(e.getMessage());
         }
     }
 
     public void boardBus(Bus bus){
-        System.out.println("Rider boarded...");
+        System.out.println("Rider " + this.id + " boarded");
     }
 }
