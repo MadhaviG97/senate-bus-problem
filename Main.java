@@ -6,21 +6,25 @@ import java.util.concurrent.*;
 import java.util.Random;
 
 class Main{  
-    public static void main(String args[]){  
+
+    private static final int N = 50; 
+
+    public static void main(String args[]){ 
+         
         List<Rider> busQueue = new ArrayList<Rider>();
-        Semaphore spaces = new Semaphore(50);
-        Semaphore turnstile = new Semaphore(1);
+        Semaphore spaces = new Semaphore(N);    // remaining slots at the bus stop
+        Semaphore no_bus = new Semaphore(1);    // to indicate if a bus has arrived at the present or not
         Semaphore mutex = new Semaphore(1);
 
         float meanBusArrivalTime = 20 * 60f * 1000 ;
-        float meanRiderArrivalTime = 30f * 1000;
+        float meanRiderArrivalTime = 0.5 * 60f * 1000;
 
         // test
         // float meanBusArrivalTime = 3f * 1000 ;
         // float meanRiderArrivalTime = 1f * 1000;
 
-        EntityProducer busProducer = new EntityProducer("bus", meanBusArrivalTime, busQueue, spaces, turnstile, mutex);
-        EntityProducer riderProducesr = new EntityProducer("rider", meanRiderArrivalTime, busQueue, spaces, turnstile, mutex);
+        EntityProducer busProducer = new EntityProducer("bus", meanBusArrivalTime, busQueue, spaces, no_bus, mutex);
+        EntityProducer riderProducesr = new EntityProducer("rider", meanRiderArrivalTime, busQueue, spaces, no_bus, mutex);
         
         Thread busThread = new Thread(busProducer);
         Thread riderThread = new Thread(riderProducesr);
@@ -31,6 +35,7 @@ class Main{
 
 }  
 
+// Entity producer class controls the creation of Bus and Rider threads according to the given probability distributions
 class EntityProducer extends Thread{
     private Runnable entity;
     private String entityType;
@@ -38,18 +43,18 @@ class EntityProducer extends Thread{
     private Random randomGenerator;
     private List<Rider> busQueue;
     private Semaphore spaces;
-    private Semaphore turnstile;
+    private Semaphore no_bus;
     private Semaphore mutex;
 
 
-    public EntityProducer(String entityType, float meanArrivalTime, List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
+    public EntityProducer(String entityType, float meanArrivalTime, List<Rider> busQueue, Semaphore spaces, Semaphore no_bus, Semaphore mutex){
         super();
         
         this.entityType = entityType;
         this.meanArrivalTime = meanArrivalTime;
         this.busQueue = busQueue;
         this.spaces = spaces;
-        this.turnstile = turnstile;
+        this.no_bus = no_bus;
         this.mutex = mutex;
 
         randomGenerator = new Random();
@@ -62,9 +67,9 @@ class EntityProducer extends Thread{
             try{
                 count++;
                 if (entityType=="bus"){
-                    entity = new Bus(count, busQueue, spaces, turnstile, mutex);
+                    entity = new Bus(count, busQueue, spaces, no_bus, mutex);
                 } else{
-                    entity = new Rider(count, busQueue, spaces, turnstile, mutex);
+                    entity = new Rider(count, busQueue, spaces, no_bus, mutex);
                 }
                 Thread rider = new Thread(entity);
                 
@@ -88,15 +93,15 @@ class Bus implements Runnable{
     private int id;
     private List<Rider> busQueue;
     private Semaphore spaces;
-    private Semaphore turnstile;
+    private Semaphore no_bus;
     private Semaphore mutex;
 
-    public Bus(int id, List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
+    public Bus(int id, List<Rider> busQueue, Semaphore spaces, Semaphore no_bus, Semaphore mutex){
         super();
         this.id = id;
         this.busQueue = busQueue;
         this.spaces = spaces;
-        this.turnstile = turnstile;
+        this.no_bus = no_bus;
         this.mutex = mutex;
     }
 
@@ -104,12 +109,15 @@ class Bus implements Runnable{
         System.out.println("Bus " + this.id +" arrived...");
         
         try{
-            this.turnstile.acquire();
-            // CRITICAL SECTION
+            this.no_bus.acquire();
+
+            int count=0;
             this.mutex.acquire();
 
+            // CRITICAL SECTION BEGIN
+            
+            // board all riders at the bus stop
             Iterator<Rider> iterator = busQueue.iterator();
-            int count=0;
             while (iterator.hasNext()) {
                 Rider nextRider = iterator.next();
                 iterator.remove();
@@ -117,11 +125,12 @@ class Bus implements Runnable{
                 this.spaces.release();
                 count++;
             }
-            this.depart(count);
-            this.mutex.release();
             // CRITICAL SECTION END 
+
+            this.mutex.release();
+            this.depart(count);
             
-            this.turnstile.release();
+            this.no_bus.release();
         } catch(InterruptedException e){
             System.out.println(e.getMessage());
         }
@@ -136,33 +145,40 @@ class Rider implements Runnable{
     private int id;
     private List<Rider> busQueue;
     private Semaphore spaces;
-    private Semaphore turnstile;
+    private Semaphore no_bus;
     private Semaphore mutex;
 
-    public Rider(int id, List<Rider> busQueue, Semaphore spaces, Semaphore turnstile, Semaphore mutex){
+    public Rider(int id, List<Rider> busQueue, Semaphore spaces, Semaphore no_bus, Semaphore mutex){
         super();
         this.id = id;
         this.busQueue = busQueue;
         this.spaces = spaces;
-        this.turnstile = turnstile;
+        this.no_bus = no_bus;
         this.mutex = mutex;
     }
     
     public void run() {
         System.out.println("Rider "+ this.id +" arrived");
         try{
-            turnstile.acquire();
-            turnstile.release();
+            // If a bus has aarived at the present moment and boarding passengers at the bus stop,
+            // then avoid the rider boarding the bus
+            no_bus.acquire();
+            no_bus.release();
     
             spaces.acquire();
 
-            // CRITICAL SECTION
             mutex.acquire();
+
+            // CRITICAL SECTION BEGIN
+
+            // rider is in the bus stop
             busQueue.add(this);
-            mutex.release(); 
+
             // CRITICAL SECTION END   
 
-            System.out.println("Rider " + this.id + " is in the busStop");     
+            mutex.release(); 
+
+            System.out.println("Rider " + this.id + " is in the bus stop");     
         } catch(InterruptedException e){
             System.out.println(e.getMessage());
         }
