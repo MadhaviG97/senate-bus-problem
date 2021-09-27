@@ -5,8 +5,10 @@
 2. 170182X - M. P. M. Gayathri
 
 <b> To run the program </b>
+
 Execute the following two lines on the terminal.
-'''
+
+```
 javac Main.java
 java Main
-'''
+```
