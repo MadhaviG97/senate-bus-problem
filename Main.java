@@ -16,12 +16,12 @@ class Main{
         Semaphore no_bus = new Semaphore(1);    // to indicate if a bus has arrived at the present or not
         Semaphore mutex = new Semaphore(1);
 
-        float meanBusArrivalTime = 20 * 60f * 1000 ;
-        float meanRiderArrivalTime = 0.5 * 60f * 1000;
+        // float meanBusArrivalTime = 20 * 60f * 1000 ;
+        // float meanRiderArrivalTime = 30f * 1000;
 
         // test
-        // float meanBusArrivalTime = 3f * 1000 ;
-        // float meanRiderArrivalTime = 1f * 1000;
+        float meanBusArrivalTime = 40f * 1000;
+        float meanRiderArrivalTime = 1f * 1000;
 
         EntityProducer busProducer = new EntityProducer("bus", meanBusArrivalTime, busQueue, spaces, no_bus, mutex);
         EntityProducer riderProducesr = new EntityProducer("rider", meanRiderArrivalTime, busQueue, spaces, no_bus, mutex);
@@ -71,11 +71,11 @@ class EntityProducer extends Thread{
                 } else{
                     entity = new Rider(count, busQueue, spaces, no_bus, mutex);
                 }
-                Thread rider = new Thread(entity);
+                Thread threadEntity = new Thread(entity);
                 
                 System.out.println("Produced "+ entity.getClass().getName() + " " + count);
 
-                rider.start();
+                threadEntity.start();
                 Thread.sleep(nextEntityIn());
             } catch (InterruptedException e){
                 System.exit(0);

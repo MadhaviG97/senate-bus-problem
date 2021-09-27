@@ -1,0 +1,614 @@
+mad@pop-os:~/Documents/Projects/senate-bus-problem$  cd /home/mad/Documents/Projects/senate-bus-problem ; /usr/bin/env /usr/lib/jvm/java-1.11.0-openjdk-amd64/bin/java -Dfile.encoding=UTF-8 -cp /home/mad/.config/Code/User/workspaceStorage/72c1a636d8954f08abcc2601a83d97ac/redhat.java/jdt_ws/senate-bus-problem_48a2e999/bin Main 
+Produced Rider 1
+Produced Bus 1
+Rider 1 arrived
+Bus 1 arrived...
+Bus 1 is departing with 0 riders
+Rider 1 is in the bus stop
+Produced Rider 2
+Rider 2 arrived
+Rider 2 is in the bus stop
+Produced Rider 3
+Rider 3 arrived
+Rider 3 is in the bus stop
+Produced Rider 4
+Rider 4 arrived
+Rider 4 is in the bus stop
+Produced Rider 5
+Rider 5 arrived
+Rider 5 is in the bus stop
+Produced Rider 6
+Rider 6 arrived
+Rider 6 is in the bus stop
+Produced Rider 7
+Rider 7 arrived
+Rider 7 is in the bus stop
+Produced Rider 8
+Rider 8 arrived
+Rider 8 is in the bus stop
+Produced Rider 9
+Rider 9 arrived
+Rider 9 is in the bus stop
+Produced Rider 10
+Rider 10 arrived
+Rider 10 is in the bus stop
+Produced Rider 11
+Rider 11 arrived
+Rider 11 is in the bus stop
+Produced Rider 12
+Rider 12 arrived
+Rider 12 is in the bus stop
+Produced Rider 13
+Rider 13 arrived
+Rider 13 is in the bus stop
+Produced Rider 14
+Rider 14 arrived
+Rider 14 is in the bus stop
+Produced Rider 15
+Rider 15 arrived
+Rider 15 is in the bus stop
+Produced Rider 16
+Rider 16 arrived
+Rider 16 is in the bus stop
+Produced Rider 17
+Rider 17 arrived
+Rider 17 is in the bus stop
+Produced Rider 18
+Rider 18 arrived
+Rider 18 is in the bus stop
+Produced Rider 19
+Rider 19 arrived
+Rider 19 is in the bus stop
+Produced Rider 20
+Rider 20 arrived
+Rider 20 is in the bus stop
+Produced Rider 21
+Rider 21 arrived
+Rider 21 is in the bus stop
+Produced Rider 22
+Rider 22 arrived
+Rider 22 is in the bus stop
+Produced Rider 23
+Rider 23 arrived
+Rider 23 is in the bus stop
+Produced Rider 24
+Rider 24 arrived
+Rider 24 is in the bus stop
+Produced Rider 25
+Rider 25 arrived
+Rider 25 is in the bus stop
+Produced Rider 26
+Rider 26 arrived
+Rider 26 is in the bus stop
+Produced Rider 27
+Rider 27 arrived
+Rider 27 is in the bus stop
+Produced Rider 28
+Rider 28 arrived
+Rider 28 is in the bus stop
+Produced Rider 29
+Rider 29 arrived
+Rider 29 is in the bus stop
+Produced Rider 30
+Rider 30 arrived
+Rider 30 is in the bus stop
+Produced Rider 31
+Rider 31 arrived
+Rider 31 is in the bus stop
+Produced Rider 32
+Rider 32 arrived
+Rider 32 is in the bus stop
+Produced Rider 33
+Rider 33 arrived
+Rider 33 is in the bus stop
+Produced Rider 34
+Rider 34 arrived
+Rider 34 is in the bus stop
+Produced Rider 35
+Rider 35 arrived
+Rider 35 is in the bus stop
+Produced Rider 36
+Rider 36 arrived
+Rider 36 is in the bus stop
+Produced Rider 37
+Rider 37 arrived
+Rider 37 is in the bus stop
+Produced Rider 38
+Rider 38 arrived
+Rider 38 is in the bus stop
+Produced Rider 39
+Rider 39 arrived
+Rider 39 is in the bus stop
+Produced Rider 40
+Rider 40 arrived
+Rider 40 is in the bus stop
+Produced Rider 41
+Rider 41 arrived
+Rider 41 is in the bus stop
+Produced Rider 42
+Rider 42 arrived
+Rider 42 is in the bus stop
+Produced Bus 2
+Bus 2 arrived...
+Rider 1 boarded
+Rider 2 boarded
+Rider 3 boarded
+Rider 4 boarded
+Rider 5 boarded
+Rider 6 boarded
+Rider 7 boarded
+Rider 8 boarded
+Rider 9 boarded
+Rider 10 boarded
+Rider 11 boarded
+Rider 12 boarded
+Rider 13 boarded
+Rider 14 boarded
+Rider 15 boarded
+Rider 16 boarded
+Rider 17 boarded
+Rider 18 boarded
+Rider 19 boarded
+Rider 20 boarded
+Rider 21 boarded
+Rider 22 boarded
+Rider 23 boarded
+Rider 24 boarded
+Rider 25 boarded
+Rider 26 boarded
+Rider 27 boarded
+Rider 28 boarded
+Rider 29 boarded
+Rider 30 boarded
+Rider 31 boarded
+Rider 32 boarded
+Rider 33 boarded
+Rider 34 boarded
+Rider 35 boarded
+Rider 36 boarded
+Rider 37 boarded
+Rider 38 boarded
+Rider 39 boarded
+Rider 40 boarded
+Rider 41 boarded
+Rider 42 boarded
+Bus 2 is departing with 42 riders
+Produced Rider 43
+Rider 43 arrived
+Rider 43 is in the bus stop
+Produced Rider 44
+Rider 44 arrived
+Rider 44 is in the bus stop
+Produced Rider 45
+Rider 45 arrived
+Rider 45 is in the bus stop
+Produced Rider 46
+Rider 46 arrived
+Rider 46 is in the bus stop
+Produced Rider 47
+Rider 47 arrived
+Rider 47 is in the bus stop
+Produced Rider 48
+Rider 48 arrived
+Rider 48 is in the bus stop
+Produced Rider 49
+Rider 49 arrived
+Rider 49 is in the bus stop
+Produced Rider 50
+Rider 50 arrived
+Rider 50 is in the bus stop
+Produced Rider 51
+Rider 51 arrived
+Rider 51 is in the bus stop
+Produced Rider 52
+Rider 52 arrived
+Rider 52 is in the bus stop
+Produced Rider 53
+Rider 53 arrived
+Rider 53 is in the bus stop
+Produced Rider 54
+Rider 54 arrived
+Rider 54 is in the bus stop
+Produced Rider 55
+Rider 55 arrived
+Rider 55 is in the bus stop
+Produced Rider 56
+Rider 56 arrived
+Rider 56 is in the bus stop
+Produced Rider 57
+Rider 57 arrived
+Rider 57 is in the bus stop
+Produced Rider 58
+Rider 58 arrived
+Rider 58 is in the bus stop
+Produced Rider 59
+Rider 59 arrived
+Rider 59 is in the bus stop
+Produced Rider 60
+Rider 60 arrived
+Rider 60 is in the bus stop
+Produced Rider 61
+Rider 61 arrived
+Rider 61 is in the bus stop
+Produced Rider 62
+Rider 62 arrived
+Rider 62 is in the bus stop
+Produced Rider 63
+Rider 63 arrived
+Rider 63 is in the bus stop
+Produced Rider 64
+Rider 64 arrived
+Rider 64 is in the bus stop
+Produced Rider 65
+Rider 65 arrived
+Rider 65 is in the bus stop
+Produced Rider 66
+Rider 66 arrived
+Rider 66 is in the bus stop
+Produced Rider 67
+Rider 67 arrived
+Rider 67 is in the bus stop
+Produced Rider 68
+Rider 68 arrived
+Rider 68 is in the bus stop
+Produced Rider 69
+Rider 69 arrived
+Rider 69 is in the bus stop
+Produced Rider 70
+Rider 70 arrived
+Rider 70 is in the bus stop
+Produced Rider 71
+Rider 71 arrived
+Rider 71 is in the bus stop
+Produced Rider 72
+Rider 72 arrived
+Rider 72 is in the bus stop
+Produced Rider 73
+Rider 73 arrived
+Rider 73 is in the bus stop
+Produced Rider 74
+Rider 74 arrived
+Rider 74 is in the bus stop
+Produced Rider 75
+Rider 75 arrived
+Rider 75 is in the bus stop
+Produced Rider 76
+Rider 76 arrived
+Rider 76 is in the bus stop
+Produced Rider 77
+Rider 77 arrived
+Rider 77 is in the bus stop
+Produced Rider 78
+Rider 78 arrived
+Rider 78 is in the bus stop
+Produced Rider 79
+Rider 79 arrived
+Rider 79 is in the bus stop
+Produced Rider 80
+Rider 80 arrived
+Rider 80 is in the bus stop
+Produced Rider 81
+Rider 81 arrived
+Rider 81 is in the bus stop
+Produced Rider 82
+Rider 82 arrived
+Rider 82 is in the bus stop
+Produced Rider 83
+Rider 83 arrived
+Rider 83 is in the bus stop
+Produced Rider 84
+Rider 84 arrived
+Rider 84 is in the bus stop
+Produced Rider 85
+Rider 85 arrived
+Rider 85 is in the bus stop
+Produced Rider 86
+Rider 86 arrived
+Rider 86 is in the bus stop
+Produced Rider 87
+Rider 87 arrived
+Rider 87 is in the bus stop
+Produced Rider 88
+Rider 88 arrived
+Rider 88 is in the bus stop
+Produced Rider 89
+Rider 89 arrived
+Rider 89 is in the bus stop
+Produced Rider 90
+Rider 90 arrived
+Rider 90 is in the bus stop
+Produced Rider 91
+Rider 91 arrived
+Rider 91 is in the bus stop
+Produced Rider 92
+Rider 92 arrived
+Rider 92 is in the bus stop
+Produced Rider 93
+Rider 93 arrived
+Produced Rider 94
+Rider 94 arrived
+Produced Rider 95
+Rider 95 arrived
+Produced Rider 96
+Rider 96 arrived
+Produced Rider 97
+Rider 97 arrived
+Produced Rider 98
+Rider 98 arrived
+Produced Rider 99
+Rider 99 arrived
+Produced Rider 100
+Rider 100 arrived
+Produced Rider 101
+Rider 101 arrived
+Produced Rider 102
+Rider 102 arrived
+Produced Rider 103
+Rider 103 arrived
+Produced Rider 104
+Rider 104 arrived
+Produced Rider 105
+Rider 105 arrived
+Produced Rider 106
+Rider 106 arrived
+Produced Rider 107
+Rider 107 arrived
+Produced Rider 108
+Rider 108 arrived
+Produced Rider 109
+Rider 109 arrived
+Produced Rider 110
+Rider 110 arrived
+Produced Rider 111
+Rider 111 arrived
+Produced Rider 112
+Rider 112 arrived
+Produced Rider 113
+Rider 113 arrived
+Produced Rider 114
+Rider 114 arrived
+Produced Rider 115
+Rider 115 arrived
+Produced Rider 116
+Rider 116 arrived
+Produced Rider 117
+Rider 117 arrived
+Produced Rider 118
+Rider 118 arrived
+Produced Rider 119
+Rider 119 arrived
+Produced Rider 120
+Rider 120 arrived
+Produced Rider 121
+Rider 121 arrived
+Produced Bus 3
+Bus 3 arrived...
+Rider 43 boarded
+Rider 44 boarded
+Rider 45 boarded
+Rider 46 boarded
+Rider 47 boarded
+Rider 48 boarded
+Rider 49 boarded
+Rider 50 boarded
+Rider 51 boarded
+Rider 52 boarded
+Rider 53 boarded
+Rider 54 boarded
+Rider 55 boarded
+Rider 56 boarded
+Rider 57 boarded
+Rider 58 boarded
+Rider 59 boarded
+Rider 60 boarded
+Rider 61 boarded
+Rider 62 boarded
+Rider 63 boarded
+Rider 64 boarded
+Rider 65 boarded
+Rider 66 boarded
+Rider 67 boarded
+Rider 68 boarded
+Rider 69 boarded
+Rider 70 boarded
+Rider 71 boarded
+Rider 72 boarded
+Rider 73 boarded
+Rider 74 boarded
+Rider 75 boarded
+Rider 76 boarded
+Rider 77 boarded
+Rider 78 boarded
+Rider 79 boarded
+Rider 80 boarded
+Rider 81 boarded
+Rider 82 boarded
+Rider 83 boarded
+Rider 84 boarded
+Rider 85 boarded
+Rider 86 boarded
+Rider 87 boarded
+Rider 88 boarded
+Rider 89 boarded
+Rider 90 boarded
+Rider 91 boarded
+Rider 92 boarded
+Bus 3 is departing with 50 riders
+Rider 93 is in the bus stop
+Rider 94 is in the bus stop
+Rider 97 is in the bus stop
+Rider 95 is in the bus stop
+Rider 98 is in the bus stop
+Rider 96 is in the bus stop
+Rider 100 is in the bus stop
+Rider 99 is in the bus stop
+Rider 103 is in the bus stop
+Rider 102 is in the bus stop
+Rider 106 is in the bus stop
+Rider 101 is in the bus stop
+Rider 111 is in the bus stop
+Rider 109 is in the bus stop
+Rider 108 is in the bus stop
+Rider 115 is in the bus stop
+Rider 116 is in the bus stop
+Rider 118 is in the bus stop
+Rider 113 is in the bus stop
+Rider 107 is in the bus stop
+Rider 119 is in the bus stop
+Rider 105 is in the bus stop
+Rider 104 is in the bus stop
+Rider 121 is in the bus stop
+Rider 120 is in the bus stop
+Rider 117 is in the bus stop
+Rider 114 is in the bus stop
+Rider 110 is in the bus stop
+Rider 112 is in the bus stop
+Produced Rider 122
+Rider 122 arrived
+Rider 122 is in the bus stop
+Produced Rider 123
+Rider 123 arrived
+Rider 123 is in the bus stop
+Produced Rider 124
+Rider 124 arrived
+Rider 124 is in the bus stop
+Produced Rider 125
+Rider 125 arrived
+Rider 125 is in the bus stop
+Produced Rider 126
+Rider 126 arrived
+Rider 126 is in the bus stop
+Produced Rider 127
+Rider 127 arrived
+Rider 127 is in the bus stop
+Produced Rider 128
+Rider 128 arrived
+Rider 128 is in the bus stop
+Produced Rider 129
+Rider 129 arrived
+Rider 129 is in the bus stop
+Produced Rider 130
+Rider 130 arrived
+Rider 130 is in the bus stop
+Produced Rider 131
+Rider 131 arrived
+Rider 131 is in the bus stop
+Produced Rider 132
+Rider 132 arrived
+Rider 132 is in the bus stop
+Produced Rider 133
+Rider 133 arrived
+Rider 133 is in the bus stop
+Produced Rider 134
+Rider 134 arrived
+Rider 134 is in the bus stop
+Produced Rider 135
+Rider 135 arrived
+Rider 135 is in the bus stop
+Produced Rider 136
+Rider 136 arrived
+Rider 136 is in the bus stop
+Produced Rider 137
+Rider 137 arrived
+Rider 137 is in the bus stop
+Produced Rider 138
+Rider 138 arrived
+Rider 138 is in the bus stop
+Produced Rider 139
+Rider 139 arrived
+Rider 139 is in the bus stop
+Produced Rider 140
+Rider 140 arrived
+Rider 140 is in the bus stop
+Produced Rider 141
+Rider 141 arrived
+Rider 141 is in the bus stop
+Produced Rider 142
+Rider 142 arrived
+Rider 142 is in the bus stop
+Produced Rider 143
+Rider 143 arrived
+Produced Rider 144
+Rider 144 arrived
+Produced Rider 145
+Rider 145 arrived
+Produced Rider 146
+Rider 146 arrived
+Produced Rider 147
+Rider 147 arrived
+Produced Rider 148
+Rider 148 arrived
+Produced Rider 149
+Rider 149 arrived
+Produced Rider 150
+Rider 150 arrived
+Produced Rider 151
+Rider 151 arrived
+Produced Rider 152
+Rider 152 arrived
+Produced Bus 4
+Bus 4 arrived...
+Rider 93 boarded
+Rider 94 boarded
+Rider 95 boarded
+Rider 96 boarded
+Rider 97 boarded
+Rider 98 boarded
+Rider 99 boarded
+Rider 100 boarded
+Rider 101 boarded
+Rider 102 boarded
+Rider 103 boarded
+Rider 104 boarded
+Rider 105 boarded
+Rider 106 boarded
+Rider 107 boarded
+Rider 108 boarded
+Rider 109 boarded
+Rider 111 boarded
+Rider 112 boarded
+Rider 110 boarded
+Rider 113 boarded
+Rider 114 boarded
+Rider 115 boarded
+Rider 116 boarded
+Rider 117 boarded
+Rider 118 boarded
+Rider 119 boarded
+Rider 120 boarded
+Rider 121 boarded
+Rider 122 boarded
+Rider 123 boarded
+Rider 124 boarded
+Rider 125 boarded
+Rider 126 boarded
+Rider 127 boarded
+Rider 128 boarded
+Rider 129 boarded
+Rider 130 boarded
+Rider 131 boarded
+Rider 132 boarded
+Rider 133 boarded
+Rider 134 boarded
+Rider 135 boarded
+Rider 136 boarded
+Rider 137 boarded
+Rider 138 boarded
+Rider 139 boarded
+Rider 140 boarded
+Rider 141 boarded
+Rider 142 boarded
+Bus 4 is departing with 50 riders
+Rider 143 is in the bus stop
+Rider 145 is in the bus stop
+Rider 147 is in the bus stop
+Rider 148 is in the bus stop
+Rider 150 is in the bus stop
+Rider 146 is in the bus stop
+Rider 144 is in the bus stop
+Rider 151 is in the bus stop
+Rider 149 is in the bus stop
+Rider 152 is in the bus stop
+Produced Rider 153
+Rider 153 arrived
+Rider 153 is in the bus stop
